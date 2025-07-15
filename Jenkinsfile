@@ -1,6 +1,12 @@
 pipeline {
     agent any
 
+    environment {
+        project = "expense"
+        component = "jenkins"
+        environment = "prod"
+    }
+
     stages{
 
         stage('Build') {
@@ -8,6 +14,7 @@ pipeline {
                 script {
                     sh """
                         echo "Hello this is build"
+                        echo "project: $project"
                     """
                 }
             }
@@ -18,6 +25,7 @@ pipeline {
                 script {
                     sh """
                         echo "This is the test"
+                        echo "componet: $component"
                     """
                 }
             }
@@ -27,7 +35,8 @@ pipeline {
             steps {
                 script {
                     sh """
-                        echo ""
+                        echo "this is deploy"
+                        echo "environment: $environment"
                     """
                 }
             }

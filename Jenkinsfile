@@ -12,5 +12,25 @@ pipeline {
                 }
             }
         }
+
+        stage('Test') {
+            steps {
+                script {
+                    sh """
+                        echo "This is the test"
+                    """
+                }
+            }
+        }
+
+        stage('Deploy') {
+            steps {
+                script {
+                    sh """
+                        echo ""
+                    """
+                }
+            }
+        }
     }
 }

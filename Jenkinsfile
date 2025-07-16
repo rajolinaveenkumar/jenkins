@@ -9,23 +9,16 @@ pipeline {
         environment = "prod"
     }
 
-    // options {
-    //     timeout(time: 20, unit: 'MINUTES')             
-    //     disableConcurrentBuilds()                      
-    //     // disableConcurrentBuilds(abortPrevious: true)
-    //     // retry(2)                                       
-    //     disableResume()                                
-    //     buildDiscarder(logRotator(numToKeepStr: '10'))  
-    //     checkoutToSubdirectory('foo')
-    //     overrideIndexTriggers(true)                    
-    //     preserveStashes(buildCount: 5)                 
-    //     quietPeriod(30)                                
-    //     skipDefaultCheckout()                          
-    //     skipStagesAfterUnstable()                      
-    //     timestamps()                                   
-    //     ansiColor('xterm')                             
-    //     parallelsAlwaysFailFast()                      
-    // }
+    options {
+        timeout(time: 20, unit: 'MINUTES')             
+        disableConcurrentBuilds()                   
+        disableResume()                                
+        preserveStashes(buildCount: 5)                 
+        quietPeriod(30)                                                   
+        timestamps()                                   
+        ansiColor('xterm')                             
+        parallelsAlwaysFailFast()                      
+    }
     
     parameters {
         string(name: 'PERSON', defaultValue: 'Mr Naveen Rajoli', description: 'Who should I say hello to?')

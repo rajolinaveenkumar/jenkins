@@ -80,7 +80,7 @@ pipeline {
                 script {
                     sh """
                         echo "this is deploy"
-                        echo "environment: ${env}"
+                        echo "environment: $env"
                         echo "componet: $component"
                     """
                 }

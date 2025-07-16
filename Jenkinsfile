@@ -73,15 +73,13 @@ pipeline {
 
         stage('Environmet') {
             when {
-                environment name: 'DEPLOY_TO', value: 'prod'
-                // parameter name: 
+                environment name: 'env', value: 'prod'
+                
             }
             input {
                 message "should we continue?"
                 ok "yes please proceed"
-                parameters {
-                    string(name: 'PERSON', defaultValue: 'Mr Naveen Rajoli', description: 'Who should I say hello to?')
-                }
+                
             }
             steps {
                 script {

@@ -6,7 +6,7 @@ pipeline {
     environment {
         project = "expense"
         component = "jenkins"
-        env = "dev"
+        environment_name = "dev"
         DEPLOY_TO = "prod"        
         
     }
@@ -80,7 +80,7 @@ pipeline {
                 script {
                     sh """
                         echo "this is deploy"
-                        echo "environment: $env"
+                        echo "environment: $environment_name"
                         echo "componet: $component"
                     """
                 }

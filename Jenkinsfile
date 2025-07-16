@@ -103,7 +103,7 @@ pipeline {
             }
         }
 
-        stage('parallel Stage')
+        stage('parallel Stage') {
             parallel {
                 stage('stage-1') {
                     steps {
@@ -124,6 +124,7 @@ pipeline {
                     }
                 }
             }
+        }
     }
 
     post {

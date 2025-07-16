@@ -7,6 +7,7 @@ pipeline {
         project = "expense"
         component = "jenkins"
         environment_name = "dev"
+        DEPLOY_TO = "prod"  
         env = "prod"      
         
     }

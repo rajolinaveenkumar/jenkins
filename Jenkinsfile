@@ -6,9 +6,9 @@ pipeline {
     environment {
         project = "expense"
         component = "jenkins"
-        environment_name = "dev"
+        
         DEPLOY_TO = "prod"  
-        env = "prod"
+        env = "prod" 
         env_name = "non-prod"      
         
     }
@@ -29,7 +29,7 @@ pipeline {
         text(name: 'DEPLOY_TEXT', defaultValue: 'One\nTwo\nThree\n', description: '')
         text(name: 'BIOGRAPHY', defaultValue: '', description: 'Enter some information about the person')
         booleanParam(name: 'TOGGLE', defaultValue: true, description: 'Toggle this value')
-        choice(name: 'env', choices: ['dev', 'staging', 'prod'], description: 'Pick something')
+        choice(name: 'environment_name', choices: ['dev', 'staging', 'prod'], description: 'Pick something')
         password(name: 'PASSWORD', defaultValue: 'SECRET', description: 'Enter a password')
     }
 
@@ -66,7 +66,7 @@ pipeline {
             steps {
                 script {
                     sh """
-                        echo "This is the test"
+                        echo "This is the test" 
                         echo "componet: $component"
                     """
                 }
@@ -75,14 +75,15 @@ pipeline {
 
         stage('Environmet') {
             when {
-                environment name: 'DEPLOY_TO', value: 'prod'
+                // environment name: 'DEPLOY_TO', value: 'prod'
+                environment name: 'environment_name', value: 'prod'
                 
             }
             steps {
                 script {
                     sh """
                         echo "this is deploy"
-                        echo "environment: $env"
+                        echo "environment: $env (note: env wont work bcz its shell varaible)" 
                         echo "environment: $env_name"
                         
                     """

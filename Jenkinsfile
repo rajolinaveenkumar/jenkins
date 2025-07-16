@@ -76,11 +76,6 @@ pipeline {
                 environment name: 'env', value: 'prod'
                 
             }
-            input {
-                message "should we continue?"
-                ok "yes please proceed"
-                
-            }
             steps {
                 script {
                     sh """

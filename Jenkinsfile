@@ -9,8 +9,27 @@ pipeline {
         environment = "prod"
     }
 
+    options {
+        timeout(time: 20, unit: 'MINUTES')             
+        disableConcurrentBuilds()                      
+        // disableConcurrentBuilds(abortPrevious: true)
+        retry(2)                                       
+        disableResume()                                
+        buildDiscarder(logRotator(numToKeepStr: '3'))  
+        checkoutToSubdirectory('foo')
+        overrideIndexTriggers(true)                    
+        preserveStashes(buildCount: 5)                 
+        quietPeriod(30)                                
+        skipDefaultCheckout()                          
+        skipStagesAfterUnstable()                      
+        timestamps()                                   
+        ansiColor('xterm')                             
+        parallelsAlwaysFailFast()                      
+    }
+    
     parameters {
-        string(name: 'PERSON', defaultValue: 'Mr Jenkins', description: 'Who should I say hello to?')
+        string(name: 'PERSON', defaultValue: 'Mr Naveen Rajoli', description: 'Who should I say hello to?')
+        text(name: 'DEPLOY_TEXT', defaultValue: 'One\nTwo\nThree\n', description: '')
         text(name: 'BIOGRAPHY', defaultValue: '', description: 'Enter some information about the person')
         booleanParam(name: 'TOGGLE', defaultValue: true, description: 'Toggle this value')
         choice(name: 'CHOICE', choices: ['One', 'Two', 'Three'], description: 'Pick something')
@@ -65,6 +84,7 @@ pipeline {
     post {
         always {
             echo "this will run always"
+            deleteDir {}
         }
         success {
             echo "this run only at success"

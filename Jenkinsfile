@@ -81,6 +81,7 @@ pipeline {
                     sh """
                         echo "this is deploy"
                         echo "environment: ${env}"
+                        echo "componet: $component"
                     """
                 }
             }
@@ -92,6 +93,7 @@ pipeline {
                     sh """
                         echo "this is deploy"
                         echo "environment: $env"
+                        echo "componet: $component"
                     """
                 }
             }

@@ -73,7 +73,7 @@ pipeline {
 
         stage('Environmet') {
             when {
-                environment name: 'env', value: 'prod'
+                environment name: 'DEPLOY_TO', value: 'prod'
                 
             }
             steps {

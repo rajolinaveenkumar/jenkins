@@ -6,7 +6,9 @@ pipeline {
     environment {
         project = "expense"
         component = "jenkins"
-        environment = "prod"
+        environmet = "dev"
+        DEPLOY_TO = "prod"
+        
     }
 
     options {
@@ -25,7 +27,7 @@ pipeline {
         text(name: 'DEPLOY_TEXT', defaultValue: 'One\nTwo\nThree\n', description: '')
         text(name: 'BIOGRAPHY', defaultValue: '', description: 'Enter some information about the person')
         booleanParam(name: 'TOGGLE', defaultValue: true, description: 'Toggle this value')
-        choice(name: 'CHOICE', choices: ['One', 'Two', 'Three'], description: 'Pick something')
+        choice(name: 'env', choices: ['dev', 'staging', 'prod'], description: 'Pick something')
         password(name: 'PASSWORD', defaultValue: 'SECRET', description: 'Enter a password')
     }
 
@@ -64,6 +66,28 @@ pipeline {
                     sh """
                         echo "This is the test"
                         echo "componet: $component"
+                    """
+                }
+            }
+        }
+
+        stage('Environmet') {
+            when {
+                environment name: 'DEPLOY_TO', value: 'prod'
+                // parameter name: 
+            }
+            input {
+                message "should we continue?"
+                ok "yes please proceed"
+                parameters {
+                    string(name: 'PERSON', defaultValue: 'Mr Naveen Rajoli', description: 'Who should I say hello to?')
+                }
+            }
+            steps {
+                script {
+                    sh """
+                        echo "this is deploy"
+                        echo "environment: $environment"
                     """
                 }
             }

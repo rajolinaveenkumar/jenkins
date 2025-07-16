@@ -87,18 +87,18 @@ pipeline {
             }
         }
 
-    //     stage('Deploy') {
-    //         steps {
-    //             script {
-    //                 sh """
-    //                     echo "this is deploy"
-    //                     echo "environment: $env"
-    //                     echo "componet: $component"
-    //                 """
-    //             }
-    //         }
-    //     }
-    // }
+        // stage('Deploy') {
+        //     steps {
+        //         script {
+        //             sh """
+        //                 echo "this is deploy"
+        //                 echo "environment: $env"
+        //                 echo "componet: $component"
+        //             """
+        //         }
+        //     }
+        // }
+    }
 
     post {
         always {

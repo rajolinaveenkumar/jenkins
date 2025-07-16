@@ -54,13 +54,13 @@ pipeline {
         }
 
         stage('Test') {
-            input {
-                message "should we continue?"
-                ok "yes please proceed"
-                parameters {
-                    string(name: 'PERSON', defaultValue: 'Mr Naveen Rajoli', description: 'Who should I say hello to?')
-                }
-            }
+            // input {
+            //     message "should we continue?"
+            //     ok "yes please proceed"
+            //     parameters {
+            //         string(name: 'PERSON', defaultValue: 'Mr Naveen Rajoli', description: 'Who should I say hello to?')
+            //     }
+            // }
             steps {
                 script {
                     sh """
